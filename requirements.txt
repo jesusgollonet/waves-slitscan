@@ -1,0 +1,17 @@
+certifi==2024.6.2
+charset-normalizer==3.3.2
+decorator==4.4.2
+idna==3.7
+imageio==2.34.2
+imageio-ffmpeg==0.5.1
+mypy==1.10.1
+mypy-extensions==1.0.0
+numpy==2.0.0
+opencv-contrib-python==4.10.0.84
+pillow==10.4.0
+proglog==0.1.10
+requests==2.32.3
+setuptools==70.2.0
+tqdm==4.66.4
+typing_extensions==4.12.2
+urllib3==2.2.2

@@ -8,7 +8,7 @@ slit_height = 3
 
 
 def main():
-    cap = cv.VideoCapture("media/video.mp4")
+    cap = cv.VideoCapture("media/video2.mp4")
     c = 0
     while cap.isOpened():
         ret, frame = cap.read()
@@ -21,6 +21,12 @@ def main():
 
         cv.line(frame, (0, row - 2), (frame_w, row - 2), (0, 255, 255), 2)
         cv.imshow("Frame", frame)
+        # show the last 340 slits
+        slits_to_show = frame_h // slit_height
+        if c > slits_to_show:
+            cv.imshow("Slits", np.vstack(slits[-slits_to_show:]))
+        else:
+            cv.imshow("Slits", np.vstack(slits))
         if cv.waitKey(1) & 0xFF == ord("q"):
             break
         c += 1

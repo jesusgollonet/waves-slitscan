@@ -1,5 +1,27 @@
 import cv2 as cv
 import numpy as np
+import streamlink
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# load url from environment variable
+
+stream_url = (
+    os.environ.get("STREAM_URL") or "https://www.youtube.com/watch?v=5qap5aO4i9A"
+)
+url = stream_url
+# Create a Streamlink session
+
+# Get the streams for the given URL
+streams = streamlink.streams(stream_url)
+
+print(streams)
+# print(streams["small"])
+# Get the best stream
+best_stream = streams["worst"]
+best_stream_url = best_stream.to_url()
 
 
 slits = []
@@ -8,7 +30,7 @@ slit_height = 3
 
 
 def main():
-    cap = cv.VideoCapture("media/video2.mp4")
+    cap = cv.VideoCapture(best_stream_url)
     c = 0
     while cap.isOpened():
         ret, frame = cap.read()
@@ -16,7 +38,7 @@ def main():
             break
         frame_h, frame_w = frame.shape[:2]
         print(frame_h, frame_w)
-        row = 220
+        row = 620
         slits.append(frame[row : row + slit_height, :])
 
         cv.line(frame, (0, row - 2), (frame_w, row - 2), (0, 255, 255), 2)
